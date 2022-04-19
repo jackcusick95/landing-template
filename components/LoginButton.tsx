@@ -1,10 +1,4 @@
-import Head from "next/head";
-import { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
-import ReactGA from "react-ga";
-import { useWalletContext } from "../context/walletContext";
-import { AbstractConnector } from "@web3-react/abstract-connector";
-import { InjectedConnector } from "@web3-react/injected-connector";
 
 const ConnectButton = styled.div`
   display: flex;

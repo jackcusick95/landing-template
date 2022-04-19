@@ -7,6 +7,7 @@ import {
   JsonRpcFetchFunc,
   Web3Provider,
 } from "@ethersproject/providers";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const getLibrary = (
   provider: ExternalProvider | JsonRpcFetchFunc
@@ -16,13 +17,17 @@ const getLibrary = (
   return library;
 };
 
+const queryClient = new QueryClient();
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Web3ReactProvider getLibrary={getLibrary}>
-      <WalletProvider>
-        <Component {...pageProps} />
-      </WalletProvider>
-    </Web3ReactProvider>
+    <QueryClientProvider client={queryClient}>
+      <Web3ReactProvider getLibrary={getLibrary}>
+        <WalletProvider>
+          <Component {...pageProps} />
+        </WalletProvider>
+      </Web3ReactProvider>
+    </QueryClientProvider>
   );
 }
 

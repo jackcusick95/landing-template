@@ -1,6 +1,6 @@
-import { createContext, Dispatch, SetStateAction, useContext } from "react";
+import { createContext, useContext } from "react";
 import noop from "lodash/noop";
-import { BigNumber, constants, ethers } from "ethers";
+import { constants, ethers } from "ethers";
 
 import { NATIVE_CURRENCY, NETWORK_TYPE } from "../utils/constants";
 

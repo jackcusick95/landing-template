@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { ethers } from "ethers";
 import { useWalletContext } from "../context/walletContext";
 import LoginButton from "../components/LoginButton";
+import { useMutation } from "react-query";
+import { postToTwitter } from "../api/twitter";
+import { useState } from "react";
 
 const HeroSection = styled.div`
   width: 100%;
@@ -202,8 +205,9 @@ const StyledMiddleBox = styled.div`
 
 export default function Home(): JSX.Element {
   const { login, active, signer, account } = useWalletContext();
+  const [translatedText, setTranslatedText] = useState("");
 
-  console.log(active, signer, account);
+  // console.log(active, signer, account);
 
   const isAddress = (value: string) => {
     try {
@@ -226,6 +230,14 @@ export default function Home(): JSX.Element {
   };
 
   const shortAddress = shortenAddress(account);
+
+  const { mutate: postNewTweet } = useMutation(postToTwitter);
+
+  const handleTweet = () => {
+    if (translatedText !== "") {
+      postNewTweet({ text: translatedText });
+    }
+  };
 
   return (
     <>
@@ -262,9 +274,16 @@ export default function Home(): JSX.Element {
         </MintSection>
         <FormTweetContainer>
           <TweetPfp src="/assets/pfp.jpeg" />
-          <TweetInput placeholder="tweet from..." />
+          <TweetInput
+            value={translatedText}
+            onChange={(newValue) => {
+              const updatedText = newValue.target.value;
+              setTranslatedText(updatedText);
+            }}
+            placeholder="tweet from..."
+          />
           <TweetButtonContainer>
-            <TweetButton>Tweet</TweetButton>
+            <TweetButton onClick={handleTweet}>Tweet</TweetButton>
           </TweetButtonContainer>
         </FormTweetContainer>
         <ThreeBoxContainer>
