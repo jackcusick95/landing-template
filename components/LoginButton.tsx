@@ -7,6 +7,11 @@ const ConnectButton = styled.div`
   &:hover {
     cursor: pointer;
   }
+  /* @media screen and (max-width: 550px) {
+    position: relative;
+    display: block;
+    float: none;
+  } */
 `;
 
 const StyledButton = styled.div`
