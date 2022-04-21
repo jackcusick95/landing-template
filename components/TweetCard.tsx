@@ -94,7 +94,24 @@ const Icon = styled.p`
   }
 `;
 
-const Remove = styled.p`
+const ShareIcon = styled.p`
+  display: inline-flex;
+  color: rgb(83, 100, 113);
+  font-weight: 300;
+  font-size: 13px;
+  margin: 0 auto;
+  margin-top: 10px;
+  font-family: "Teko", "Prompt", sans-serif;
+  &:hover {
+    cursor: pointer;
+  }
+  @media screen and (max-width: 550px) {
+    font-size: 12px;
+    margin-right: 5%;
+  }
+`;
+
+const Remove = styled.div`
   display: block;
   color: black;
   font-weight: 500;
@@ -235,10 +252,10 @@ const TweetCard = ({ tweets }: TweetProps): JSX.Element => {
               Retweet
               <StyledLike src="/assets/retweet.png" />
             </Icon>
-            <Icon>
+            <ShareIcon>
               Share
               <StyledLike src="/assets/share.png" />
-            </Icon>
+            </ShareIcon>
           </BottomContainer>
         </TweetText>
       </RightTextContainer>
