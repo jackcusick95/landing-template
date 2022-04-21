@@ -24,3 +24,17 @@ export const postToTwitter = async ({
     return Promise.reject(r.text());
   });
 };
+
+export const getAllTweets = async () => {
+  const response = await fetch(ENDPOINTS.TWEETS, {
+    method: "GET",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TWITTER_BEARER_TOKEN}`,
+    },
+  });
+
+  const fetchedTwitterList = await response.json();
+  return fetchedTwitterList;
+};

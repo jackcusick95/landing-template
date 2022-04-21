@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 import { useWalletContext } from "../context/walletContext";
 import LoginButton from "../components/LoginButton";
 import { useMutation } from "react-query";
-import { postToTwitter } from "../api/twitter";
+import { getAllTweets, postToTwitter } from "../api/twitter";
 import { useEffect, useState } from "react";
 import TweetCard from "../components/TweetCard";
 
@@ -540,6 +540,16 @@ export default function Home(): JSX.Element {
       setIsTranslated(true);
     }
   };
+
+  const getUserTweets = async () => {
+    try {
+      return await getAllTweets();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  getUserTweets();
 
   const TWITTER_MAX_CHARS = 280;
 
