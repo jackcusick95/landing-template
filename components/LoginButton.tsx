@@ -8,9 +8,12 @@ const ConnectButton = styled.div`
     cursor: pointer;
   }
   @media screen and (max-width: 550px) {
-    float: center;
-    text-align: center;
-    vertical-align: middle;
+    position: relative;
+    display: table;
+    margin: 0 auto;
+    float: none;
+    width: 45%;
+    margin-top: 1rem;
   }
 `;
 
@@ -29,6 +32,13 @@ const StyledButton = styled.div`
   font-size: 1.6rem;
   color: rgb(255, 255, 255);
   background: #3cb371;
+  @media screen and (max-width: 550px) {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    background: rgb(29, 155, 240);
+    font-size: 1.2rem;
+  }
 `;
 
 type LoginButtonProps = {

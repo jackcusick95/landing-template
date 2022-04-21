@@ -26,8 +26,9 @@ const Header = styled.div`
   height: auto;
   justify-content: space-between;
   @media screen and (max-width: 550px) {
-    display: table-cell;
-    float: center;
+    display: table;
+    float: none;
+    justify-content: center;
   }
 `;
 const Logo = styled.div`
@@ -35,8 +36,12 @@ const Logo = styled.div`
   float: left;
   padding: 0rem;
   @media screen and (max-width: 550px) {
-    display: block;
+    position: relative;
+    display: table;
+    margin: 0 auto;
     float: none;
+    width: 100%;
+    padding-top: 0.5rem;
   }
 `;
 
@@ -48,6 +53,12 @@ const LogoText = styled.div`
   font-style: normal;
   margin: 1rem 0px;
   -webkit-font-smoothing: none;
+  @media screen and (max-width: 550px) {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0 auto;
+  }
 `;
 
 // const FileInput = styled.input`
@@ -73,6 +84,21 @@ const MintButtonSection = styled.div`
 `;
 
 const MintText = styled.p`
+  color: white;
+  font-size: 20px;
+  font-family: "Press Start 2P";
+  font-weight: normal;
+  font-style: normal;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+  padding: 1rem 0rem;
+  @media screen and (max-width: 550px) {
+    font-size: 18px;
+  }
+`;
+
+const MintedText = styled.p`
   color: white;
   font-size: 20px;
   font-family: "Press Start 2P";
@@ -613,7 +639,7 @@ export default function Home(): JSX.Element {
           <MintButton>Claim ur Smol</MintButton>
         </MintButtonSection>
         <MintSection>
-          <MintText>Smols Minted: 0 / 7000</MintText>
+          <MintedText>Smols Minted: 0 / 7000</MintedText>
         </MintSection>
         <FormTweetContainer>
           <TweetPfpContainer>
@@ -663,9 +689,9 @@ export default function Home(): JSX.Element {
               </TranslateButton>
             )}
           </TranslateButtonContainer>
-          <TranslateButtonContainer>
+          {/* <TranslateButtonContainer>
             <AttachmentIcon src="/assets/attach.png" />
-          </TranslateButtonContainer>
+          </TranslateButtonContainer> */}
           <TabsContainer>
             <StyledTab>Recent Tweets</StyledTab>
           </TabsContainer>
