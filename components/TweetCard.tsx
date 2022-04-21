@@ -19,9 +19,11 @@ const BottomContainer = styled.div`
   display: inline-block;
   vertical-align: top;
   text-align: left;
-  /* margin-left: 7rem; */
   width: 85%;
   margin-top: 1rem;
+  @media screen and (max-width: 550px) {
+    width: 100%;
+  }
 `;
 
 const TweetText = styled.p`
@@ -33,6 +35,9 @@ const TweetText = styled.p`
   width: 100%;
   font-family: "Teko", "Prompt", sans-serif;
   line-height: 20px;
+  @media screen and (max-width: 550px) {
+    margin-left: 0.1rem;
+  }
 `;
 
 const TweetContentContainer = styled.p`
@@ -83,6 +88,10 @@ const Icon = styled.p`
   &:hover {
     cursor: pointer;
   }
+  @media screen and (max-width: 550px) {
+    font-size: 12px;
+    margin-right: 5%;
+  }
 `;
 
 const Remove = styled.p`
@@ -99,6 +108,10 @@ const Remove = styled.p`
   font-family: "Teko", "Prompt", sans-serif;
   &:hover {
     cursor: pointer;
+  }
+  @media screen and (max-width: 550px) {
+    font-weight: 500;
+    font-size: 12px;
   }
 `;
 
@@ -133,11 +146,14 @@ const RemoveCount = styled.p`
 const TweetPfp = styled.img`
   display: inline-flex;
   color: white;
-  /* margin-left: 0.5rem; */
   margin-bottom: 0.5rem;
   height: 4rem;
   width: 4rem;
   border-radius: 50%;
+  @media screen and (max-width: 550px) {
+    height: 3rem;
+    width: 3rem;
+  }
 `;
 
 const TweetPfpContainer = styled.div`
@@ -145,6 +161,10 @@ const TweetPfpContainer = styled.div`
   width: 15%;
   height: auto;
   padding-right: 2rem;
+  @media screen and (max-width: 550px) {
+    padding-right: 0rem;
+    margin-right: 0.5rem;
+  }
 `;
 
 const StyledLike = styled.img`

@@ -14,7 +14,7 @@ const HeroSection = styled.div`
   background-color: rgb(34, 27, 71);
   padding: 1rem 10% 4rem 10%;
   @media screen and (max-width: 550px) {
-    padding: 1rem 4% 4rem 4%;
+    padding: 1rem 0% 4rem 0%;
   }
 `;
 
@@ -25,11 +25,19 @@ const Header = styled.div`
   width: 100%;
   height: auto;
   justify-content: space-between;
+  @media screen and (max-width: 550px) {
+    display: table-cell;
+    float: center;
+  }
 `;
 const Logo = styled.div`
   display: flex;
   float: left;
   padding: 0rem;
+  @media screen and (max-width: 550px) {
+    display: block;
+    float: none;
+  }
 `;
 
 const LogoText = styled.div`
@@ -41,6 +49,10 @@ const LogoText = styled.div`
   margin: 1rem 0px;
   -webkit-font-smoothing: none;
 `;
+
+// const FileInput = styled.input`
+//   display: flex;
+// `;
 
 const MintSection = styled.div`
   position: relative;
@@ -70,6 +82,9 @@ const MintText = styled.p`
   vertical-align: middle;
   display: table-cell;
   padding: 1rem 0rem;
+  @media screen and (max-width: 550px) {
+    font-size: 14px;
+  }
 `;
 
 const MintButton = styled.p`
@@ -102,6 +117,11 @@ const MintButton = styled.p`
     100% {
       box-shadow: 0 0 0rem #ffd51f;
     }
+  }
+  @media screen and (max-width: 550px) {
+    font-size: 0.9rem;
+    padding: 1rem 0rem;
+    width: 230px;
   }
 `;
 
@@ -425,30 +445,6 @@ const ThreeBoxContainer = styled.div`
   }
 `;
 
-const StyledLeftBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  -webkit-box-align: center;
-  align-items: center;
-  width: 20%;
-  border: 1px solid white;
-  background-color: black;
-  padding-top: 3rem;
-  color: white;
-`;
-
-const StyledRightBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  -webkit-box-align: center;
-  align-items: center;
-  width: 20%;
-  border: 1px solid white;
-  background-color: black;
-  padding-top: 3rem;
-  color: white;
-`;
-
 const StyledMiddleBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -472,12 +468,8 @@ const StyledCharCount = styled.div`
   color: grey;
   height: 100%;
   width: auto;
-  /* right: 0; */
 `;
 
-const FileInput = styled.input`
-  display: flex;
-`;
 export default function Home(): JSX.Element {
   const { login, active, account } = useWalletContext();
   const [translatedText, setTranslatedText] = useState("");
@@ -536,17 +528,10 @@ export default function Home(): JSX.Element {
     }
   };
 
-  const handleFile = (e: any) => {
-    const file = e.target.files[0];
-    const fileReader = new FileReader();
-    fileReader.onloadend = () => {
-      const photoUrl = fileReader.result;
-      setTweetFile(photoUrl);
-    };
-    if (file) {
-      fileReader.readAsDataURL(file);
-    }
-  };
+  // const handleFile = (e: any) => {
+  //   const file = e.target.files[0];
+  //   setTweetFile(file.name);
+  // };
 
   const handleTranslate = () => {
     if (readyToTranslated && active) {
@@ -676,13 +661,11 @@ export default function Home(): JSX.Element {
           </TabsContainer>
         </FormTweetContainer>
         <ThreeBoxContainer>
-          {/* <StyledLeftBox>smolting images</StyledLeftBox> */}
           <StyledMiddleBox>
             {tweetsArray?.map((tweets) => {
               return <TweetCard key={tweets.id} tweets={tweets} />;
             })}
           </StyledMiddleBox>
-          {/* <StyledRightBox>smolting images</StyledRightBox> */}
         </ThreeBoxContainer>
       </HeroSection>
     </>
