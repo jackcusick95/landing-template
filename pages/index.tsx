@@ -8,7 +8,6 @@ import { getAllTweets, postToTwitter } from "../api/twitter";
 import { useEffect, useState } from "react";
 import TweetCard from "../components/TweetCard";
 import { NextApiRequest, NextApiResponse } from "next";
-import { useTweets } from "../hooks/useTweets";
 
 const HeroSection = styled.div`
   width: 100%;
@@ -503,6 +502,7 @@ export default function Home(): JSX.Element {
   const [translatedText, setTranslatedText] = useState("");
   const [readyToTranslated, setReadyToTranslated] = useState(false);
   const [isTranslated, setIsTranslated] = useState(false);
+  const [tweetsList, setTweetsList] = useState([]);
   const [tweetFile, setTweetFile] = useState<string | ArrayBuffer | null>("");
 
   useEffect(() => {
@@ -556,11 +556,6 @@ export default function Home(): JSX.Element {
     }
   };
 
-  // const handleFile = (e: any) => {
-  //   const file = e.target.files[0];
-  //   setTweetFile(file.name);
-  // };
-
   const handleTranslate = () => {
     if (readyToTranslated && active) {
       // LOGIC FOR TRANSLATION GOES HERE
@@ -569,37 +564,19 @@ export default function Home(): JSX.Element {
     }
   };
 
-  const { mutate: queryTweets } = useMutation(getAllTweets);
-  const tweets = queryTweets();
-  console.log(tweets);
+  // Tweets
 
-  // const { tweets } = useTweets();
-  // console.log(tweets);
+  useEffect(() => {
+    async function getTweets() {
+      const { data } = await getAllTweets();
+      console.log(data.data);
+      setTweetsList(data.data);
+      return data;
+    }
+    getTweets();
+  }, []);
 
   const TWITTER_MAX_CHARS = 280;
-
-  const tweetsArray = [
-    {
-      id: "1338971066773905408",
-      text: "Using Twitter data for academic research? Join our next livestream this Friday @ 9am PT on https://t.co/GrtBOXh5Y1!n n@SuhemParack will show how to get started with recent search &amp; filtered stream endpoints on the #TwitterAPI v2, the new Tweet payload, annotations, &amp; more. https://t.co/IraD2Z7wEg",
-    },
-    {
-      id: "1338923691497959425",
-      text: "Live now with @jessicagarson and @i_am_daniele! https://t.co/Y1AFzsTTxb",
-    },
-    {
-      id: "1337498609819021312",
-      text: "Thanks to everyone who tuned in today to make music with the #TwitterAPI!nnNext week on Twitch - @iamdaniele and @jessicagarson will show you how to integrate the #TwitterAPI and Google Sheets 📈. Tuesday, Dec 15th at 2pm ET. nnhttps://t.co/SQziic6eyp",
-    },
-    {
-      id: "1337464482654793740",
-      text: "We're live! Tune in! 🎶 https://t.co/FSYP4rJdHr",
-    },
-    {
-      id: "1337122535188652033",
-      text: "We want to hear what you think about our plans. As we continue to build our new product tracks, your feedback is essential to shaping the future of the Twitter API. Share your thoughts on this survey: https://t.co/dkIqFGPji7",
-    },
-  ];
 
   return (
     <>
@@ -697,7 +674,7 @@ export default function Home(): JSX.Element {
         </FormTweetContainer>
         <ThreeBoxContainer>
           <StyledMiddleBox>
-            {tweetsArray?.map((tweets) => {
+            {tweetsList?.map((tweets) => {
               return <TweetCard key={tweets.id} tweets={tweets} />;
             })}
           </StyledMiddleBox>

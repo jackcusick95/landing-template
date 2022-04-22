@@ -26,29 +26,38 @@ export default async (
   res: NextApiResponse
 ): Promise<any> => {
     await runMiddleware(req, res, cors);
-    // const { method } = req;
+    const { method } = req;
 
+    switch (method) {
+        case "GET":
+            try {
+              const requestUrl = `https://api.twitter.com/2/users/519574141/tweets`;
+              
+              const token = 'AAAAAAAAAAAAAAAAAAAAAMmHDwEAAAAAneRsukx4oiUf%2BIBspcBYs%2BYXPVk%3DzB6Ge4u2yuSxWIO0LiELyG9l5inPmBJFLh2waWxlEjqzr7L4vf';
 
-    const requestUrl = `https://api.twitter.com/2/users/1516498451508477955/tweets`;
-    return requestUrl;
+              const response = await fetch(requestUrl, {
+                method: "GET",
+                headers: {
+                  "User-Agent": "v2TweetLookupJS",
+                  "authorization": `Bearer ${token}`,
+                },
+              });
 
-    // switch (method) {
-    //     case "GET":
-    //         try {
-    //            const requestUrl = `https://api.twitter.com/2/users/1516498451508477955/tweets`;
-    //            return requestUrl;
-    //         } catch (err) {
-    //             console.error(`Tweets error: ${err}`);
-    //             res.status(401).json({
-    //             message: "error",
-    //             error: `Tweets error: ${err}`,
-    //             });
-    //             return;
-    //         }
+              res.json({
+                status: "success",
+                data: await response.json(),
+              })
 
-    //         default:
-    //         res.setHeader("Allow", ["GET"]);
-    //         res.status(405).end(`Method ${method} Not Allowed`);
+            } catch (err) {
+                console.error(`Tweets error: ${err}`);
+                res.status(401).json({
+                message: "error",
+                error: `Tweets error: ${err}`,
+                });
+            }
 
-    // }
+            default:
+            // res.setHeader("Allow", ["GET"]);
+            res.status(405).json(`Method ${method} Not Allowed`);
+    }
  }
