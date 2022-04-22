@@ -7,6 +7,8 @@ import { useMutation } from "react-query";
 import { getAllTweets, postToTwitter } from "../api/twitter";
 import { useEffect, useState } from "react";
 import TweetCard from "../components/TweetCard";
+import { NextApiRequest, NextApiResponse } from "next";
+import { useTweets } from "../hooks/useTweets";
 
 const HeroSection = styled.div`
   width: 100%;
@@ -567,15 +569,12 @@ export default function Home(): JSX.Element {
     }
   };
 
-  const getUserTweets = async () => {
-    try {
-      return await getAllTweets();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { mutate: queryTweets } = useMutation(getAllTweets);
+  const tweets = queryTweets();
+  console.log(tweets);
 
-  getUserTweets();
+  // const { tweets } = useTweets();
+  // console.log(tweets);
 
   const TWITTER_MAX_CHARS = 280;
 
