@@ -4,8 +4,13 @@ import styled from "styled-components";
 const Container = styled.a`
   text-align: center;
   padding: 1rem 0rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
   width: 100%;
-  border-bottom: 1px solid lightgrey;
+  border: 1px solid grey;
+  background-color: rgba(0, 0, 0, 0.5);
+
   vertical-align: top;
 `;
 
@@ -21,6 +26,7 @@ const BottomContainer = styled.div`
   text-align: left;
   width: 85%;
   margin-top: 1rem;
+
   @media screen and (max-width: 550px) {
     width: 100%;
   }
@@ -28,7 +34,7 @@ const BottomContainer = styled.div`
 
 const TweetText = styled.p`
   display: column;
-  color: black;
+  color: white;
   font-size: 15px;
   text-align: left;
   margin: 0 auto;
@@ -47,7 +53,7 @@ const TweetContentContainer = styled.p`
 
 const WassieName = styled.p`
   display: inline-flex;
-  color: black;
+  color: white;
   font-weight: 600;
   font-size: 16px;
   text-align: left;
@@ -122,7 +128,7 @@ const ShareIcon = styled.p`
 
 const Remove = styled.div`
   display: block;
-  color: black;
+  color: white;
   font-weight: 500;
   font-size: 13px;
   margin: 0 auto;
@@ -143,7 +149,7 @@ const Remove = styled.div`
 
 const ClickedRemove = styled.p`
   display: block;
-  color: black;
+  color: white;
   font-weight: 500;
   font-size: 13px;
   margin: 0 auto;
@@ -160,7 +166,7 @@ const ClickedRemove = styled.p`
 
 const RemoveCount = styled.p`
   display: block;
-  color: black;
+  color: white;
   font-weight: 500;
   font-size: 15px;
   margin: 0 auto;

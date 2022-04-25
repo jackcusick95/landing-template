@@ -194,23 +194,21 @@ const TweetButton = styled.button`
 `;
 
 const StyledTab = styled.div`
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  font-weight: 500;
+  font-weight: normal;
   transition: box-shadow 0.3s ease-in-out 0s;
-  padding: 0.3rem 1rem;
+  padding: 0.4rem 1.5rem;
   width: auto;
   height: auto;
-  font-size: 1rem;
-  color: black;
-  background-color: white;
+  font-size: 0.6rem;
+  font-family: "Press Start 2P";
+  margin: 1rem;
+  color: white;
+  background-color: rgb(0, 0, 0, 0.1);
   text-align: center;
   vertical-align: middle;
   display: table-cell;
-  border-left: 1px solid rgb(0, 0, 0);
-  border-right: 1px solid rgb(0, 0, 0);
-  border-top: 1px solid rgb(0, 0, 0);
-  border-bottom: 1px solid white;
+  border: 1px solid rgb(255, 255, 255, 0.4);
+  border-radius: 10px;
 `;
 
 const TweetActiveButton = styled.button`
@@ -285,7 +283,7 @@ const TranslateActiveButton = styled.button`
 `;
 
 const FormTweetContainer = styled.div`
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.1);
   position: relative;
   display: flex;
   margin: 0 auto;
@@ -294,8 +292,8 @@ const FormTweetContainer = styled.div`
   border: 1px solid white;
   display: table;
   margin-top: 2rem;
-  padding: 1rem 1rem 0rem 1rem;
-  border-radius: 10px 10px 0px 0px;
+  padding: 1rem 1rem 1rem 1rem;
+  border-radius: 10px;
   @media screen and (max-width: 550px) {
     width: 100%;
   }
@@ -458,13 +456,12 @@ const TweetInput = styled.textarea`
 `;
 
 const ThreeBoxContainer = styled.div`
-  background-color: white;
   position: relative;
   display: flex;
   margin: 0 auto;
   width: 60%;
   height: auto;
-  border: 1px solid white;
+  // border: 1px solid white;
   display: table;
   @media screen and (max-width: 550px) {
     width: 100%;
@@ -477,10 +474,8 @@ const StyledMiddleBox = styled.div`
   -webkit-box-align: center;
   align-items: center;
   width: 100%;
-  background-color: white;
   padding-top: 0rem;
   height: auto;
-  border-top: 1px solid black;
 `;
 
 const StyledCharCount = styled.div`
@@ -679,11 +674,13 @@ export default function Home(): JSX.Element {
           {/* <TranslateButtonContainer>
             <AttachmentIcon src="/assets/attach.png" />
           </TranslateButtonContainer> */}
+        </FormTweetContainer>
+
+        <ThreeBoxContainer>
           <TabsContainer>
             <StyledTab>Recent Tweets</StyledTab>
+            <StyledTab>Inversebrah</StyledTab>
           </TabsContainer>
-        </FormTweetContainer>
-        <ThreeBoxContainer>
           <StyledMiddleBox>
             {tweetsList?.map((tweets: any) => {
               return (
