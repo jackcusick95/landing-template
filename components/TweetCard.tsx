@@ -57,6 +57,13 @@ const WassieName = styled.p`
   font-family: "Teko", "Prompt", sans-serif;
 `;
 
+const TweetPhoto = styled.img`
+  display: block;
+  width: 95%;
+  border-radius: 16px;
+  margin-top: 20px;
+`;
+
 const Username = styled.p`
   display: inline-flex;
   color: rgb(83, 100, 113);
@@ -198,17 +205,49 @@ const StyledLike = styled.img`
 type TweetsResponse = {
   id: string;
   text: string;
+  attachments?: any;
+  url?: any;
+  created_at: any;
 };
 
 type TweetProps = {
   tweets: TweetsResponse;
+  allData: any;
 };
 
-const TweetCard = ({ tweets }: TweetProps): JSX.Element => {
-  const { text } = tweets || {};
+const TweetCard = ({ tweets, allData }: TweetProps): JSX.Element => {
+  const { text, created_at } = tweets || {};
+  const filteredText = text.split(/\shttp?s/)[0].toString();
   const [removed, setRemoved] = useState(false);
 
-  //   console.log(id);
+  let timenow = Date.now() - Date.parse(created_at);
+
+  if (timenow < 3600000) {
+    setInterval(() => {
+      timenow = Date.now() - Date.parse(created_at);
+    }, 60000);
+  }
+
+  const timeFromNow = () => {
+    if (timenow < 60000) {
+      return "<1m";
+    } else if (timenow < 3600000) {
+      return Math.floor(timenow / 60000) + "m";
+    } else if (timenow < 86400000) {
+      return Math.floor(timenow / 3600000) + "h";
+    } else {
+      return Math.floor(timenow / 86400000) + "d";
+    }
+  };
+
+  if (tweets.attachments) {
+    const mediaArray = allData.includes.media;
+    const mediaKey = mediaArray.filter((media: any) => {
+      return media.media_key === tweets.attachments.media_keys[0];
+    });
+
+    tweets["url"] = mediaKey[0].url;
+  }
 
   const handleRemove = () => {
     if (!removed) {
@@ -235,9 +274,15 @@ const TweetCard = ({ tweets }: TweetProps): JSX.Element => {
           <TweetContentContainer>
             <WassieName>WassieDao</WassieName>
             <Username>@WassieTweetDao</Username>
-            <TimeStamp>17m</TimeStamp>
+            <TimeStamp>{timeFromNow()}</TimeStamp>
             <br />
-            {text}
+            {filteredText}
+            {tweets.url && (
+              <>
+                <br />
+                <TweetPhoto src={tweets?.url} />
+              </>
+            )}
           </TweetContentContainer>
           <BottomContainer>
             <Icon>

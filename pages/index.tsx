@@ -7,7 +7,6 @@ import { useMutation } from "react-query";
 import { getAllTweets, postToTwitter } from "../api/twitter";
 import { useEffect, useState } from "react";
 import TweetCard from "../components/TweetCard";
-import { NextApiRequest, NextApiResponse } from "next";
 
 const HeroSection = styled.div`
   width: 100%;
@@ -503,6 +502,8 @@ export default function Home(): JSX.Element {
   const [readyToTranslated, setReadyToTranslated] = useState(false);
   const [isTranslated, setIsTranslated] = useState(false);
   const [tweetsList, setTweetsList] = useState([]);
+  const [allTweetData, setAllTweetData] = useState([]);
+
   const [tweetFile, setTweetFile] = useState<string | ArrayBuffer | null>("");
 
   useEffect(() => {
@@ -550,7 +551,6 @@ export default function Home(): JSX.Element {
   const { mutate: postNewTweet } = useMutation(postToTwitter);
 
   const handleTweet = () => {
-    console.log(tweetFile);
     if (translatedText !== "") {
       postNewTweet({ text: translatedText, videoUrl: tweetFile });
     }
@@ -569,7 +569,7 @@ export default function Home(): JSX.Element {
   useEffect(() => {
     async function getTweets() {
       const { data } = await getAllTweets();
-      console.log(data.data);
+      setAllTweetData(data);
       setTweetsList(data.data);
       return data;
     }
@@ -675,7 +675,13 @@ export default function Home(): JSX.Element {
         <ThreeBoxContainer>
           <StyledMiddleBox>
             {tweetsList?.map((tweets) => {
-              return <TweetCard key={tweets.id} tweets={tweets} />;
+              return (
+                <TweetCard
+                  key={tweets.id}
+                  tweets={tweets}
+                  allData={allTweetData}
+                />
+              );
             })}
           </StyledMiddleBox>
         </ThreeBoxContainer>
