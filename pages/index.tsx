@@ -550,9 +550,15 @@ export default function Home(): JSX.Element {
 
   const { mutate: postNewTweet } = useMutation(postToTwitter);
 
-  const handleTweet = () => {
-    if (translatedText !== "") {
-      postNewTweet({ text: translatedText, videoUrl: tweetFile });
+  const handleTweet = async () => {
+    if (translatedText !== "" && translatedText.length < 280) {
+      await postNewTweet({ text: translatedText, videoUrl: tweetFile });
+      setTranslatedText("");
+    }
+
+    if (translatedText.length > 280) {
+      alert("Exceeding Twitter's 280 char count");
+      return;
     }
   };
 
@@ -565,7 +571,6 @@ export default function Home(): JSX.Element {
   };
 
   // Tweets
-
   useEffect(() => {
     async function getTweets() {
       const { data } = await getAllTweets();
@@ -627,8 +632,6 @@ export default function Home(): JSX.Element {
             onChange={(newValue) => {
               const updatedText = newValue.target.value;
               setTranslatedText(updatedText);
-              setReadyToTranslated(false);
-              setIsTranslated(false);
             }}
             placeholder="Tweet from @WassieTweetDao..."
           />
@@ -643,28 +646,36 @@ export default function Home(): JSX.Element {
               handleFile(e);
             }}
           /> */}
-          <TweetButtonContainer>
-            {isTranslated ? (
-              <TweetActiveButton disabled={false} onClick={handleTweet}>
-                Tweet
-              </TweetActiveButton>
-            ) : (
-              <TweetButton disabled onClick={handleTweet}>
-                Tweet
-              </TweetButton>
-            )}
-          </TweetButtonContainer>
-          <TranslateButtonContainer>
-            {readyToTranslated ? (
-              <TranslateActiveButton disabled={false} onClick={handleTranslate}>
-                Translate
-              </TranslateActiveButton>
-            ) : (
-              <TranslateButton disabled onClick={handleTranslate}>
-                Translate
-              </TranslateButton>
-            )}
-          </TranslateButtonContainer>
+          {readyToTranslated ? (
+            <>
+              <TweetButtonContainer>
+                <TweetActiveButton disabled={false} onClick={handleTweet}>
+                  Tweet
+                </TweetActiveButton>
+              </TweetButtonContainer>
+              <TranslateButtonContainer>
+                <TranslateActiveButton
+                  disabled={false}
+                  onClick={handleTranslate}
+                >
+                  Translate
+                </TranslateActiveButton>
+              </TranslateButtonContainer>
+            </>
+          ) : (
+            <>
+              <TweetButtonContainer>
+                <TweetButton disabled onClick={handleTweet}>
+                  Tweet
+                </TweetButton>
+              </TweetButtonContainer>
+              <TranslateButtonContainer>
+                <TranslateButton disabled onClick={handleTranslate}>
+                  Translate
+                </TranslateButton>
+              </TranslateButtonContainer>
+            </>
+          )}
           {/* <TranslateButtonContainer>
             <AttachmentIcon src="/assets/attach.png" />
           </TranslateButtonContainer> */}
@@ -674,7 +685,7 @@ export default function Home(): JSX.Element {
         </FormTweetContainer>
         <ThreeBoxContainer>
           <StyledMiddleBox>
-            {tweetsList?.map((tweets) => {
+            {tweetsList?.map((tweets: any) => {
               return (
                 <TweetCard
                   key={tweets.id}
