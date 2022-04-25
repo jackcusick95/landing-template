@@ -608,11 +608,12 @@ export default function Home(): JSX.Element {
         <WassieBackgroundFour src="/assets/fingerlessWassie.png" />
         <WassieBackgroundFive src="/assets/fingerlessWassie.png" />
         <WassieBackgroundSix src="/assets/fingerlessWassie.png" />
+
         <MintSection>
-          <MintText>Mint is Live!</MintText>
+          <MintText>Wen Mint?</MintText>
         </MintSection>
         <MintButtonSection>
-          <MintButton>Claim Wassie</MintButton>
+          <MintButton>~ Thoon ~</MintButton>
         </MintButtonSection>
         <MintSection>
           <MintedText>Wassies Minted: 0 / 7000</MintedText>

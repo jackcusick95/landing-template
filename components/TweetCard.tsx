@@ -178,9 +178,11 @@ const RemoveCount = styled.p`
 const TweetPfp = styled.img`
   display: inline-flex;
   color: white;
+  background-color: white;
+  padding: 0.6rem;
   margin-bottom: 0.5rem;
-  height: 4rem;
-  width: 4rem;
+  height: 5rem;
+  width: 5rem;
   border-radius: 50%;
   @media screen and (max-width: 550px) {
     height: 3rem;
@@ -286,7 +288,7 @@ const TweetCard = ({ tweets, allData }: TweetProps): JSX.Element => {
     // eslint-disable-next-line @next/next/link-passhref
     <Container href={linkToTweet} target="_blank">
       <TweetPfpContainer>
-        <TweetPfp src="/assets/pfp.jpeg" />
+        <TweetPfp src="/assets/fingerlessWassie.png" />
         {removed ? (
           <ClickedRemove onClick={handleRemove}>Remove</ClickedRemove>
         ) : (
