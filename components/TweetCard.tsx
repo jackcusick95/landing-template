@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const Container = styled.div`
+const Container = styled.a`
   text-align: center;
   padding: 1rem 0rem;
   width: 100%;
@@ -94,6 +94,7 @@ const Icon = styled.p`
   font-family: "Teko", "Prompt", sans-serif;
   &:hover {
     cursor: pointer;
+    text-decoration: underline;
   }
   @media screen and (max-width: 550px) {
     font-size: 12px;
@@ -111,6 +112,7 @@ const ShareIcon = styled.p`
   font-family: "Teko", "Prompt", sans-serif;
   &:hover {
     cursor: pointer;
+    text-decoration: underline;
   }
   @media screen and (max-width: 550px) {
     font-size: 12px;
@@ -218,6 +220,7 @@ type TweetProps = {
 const TweetCard = ({ tweets, allData }: TweetProps): JSX.Element => {
   const { text, created_at } = tweets || {};
   const filteredText = text.split(/\shttp?s/)[0].toString();
+  const linkToTweet = `https://twitter.com/DankBankHQ/status/${tweets.id}`;
   const [removed, setRemoved] = useState(false);
 
   let timenow = Date.now() - Date.parse(created_at);
@@ -259,7 +262,7 @@ const TweetCard = ({ tweets, allData }: TweetProps): JSX.Element => {
 
   return (
     // eslint-disable-next-line @next/next/link-passhref
-    <Container>
+    <Container href={linkToTweet} target="_blank">
       <TweetPfpContainer>
         <TweetPfp src="/assets/pfp.jpeg" />
         {removed ? (

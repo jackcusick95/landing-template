@@ -57,7 +57,6 @@ export default async (
             }
 
             default:
-            // res.setHeader("Allow", ["GET"]);
             res.status(405).json(`Method ${method} Not Allowed`);
     }
  }
