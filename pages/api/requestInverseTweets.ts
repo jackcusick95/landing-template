@@ -33,7 +33,7 @@ export default async (
     switch (method) {
         case "GET":
             try {
-              const requestUrl = `https://api.twitter.com/2/users/1386730528737529861/tweets?&expansions=attachments.media_keys&media.fields=media_key,type,url&tweet.fields=created_at`;
+              const requestUrl = `https://api.twitter.com/2/users/1051852534518824960/tweets?&expansions=attachments.media_keys&media.fields=media_key,type,url&tweet.fields=created_at`;
 
               const token = 'AAAAAAAAAAAAAAAAAAAAAMmHDwEAAAAAneRsukx4oiUf%2BIBspcBYs%2BYXPVk%3DzB6Ge4u2yuSxWIO0LiELyG9l5inPmBJFLh2waWxlEjqzr7L4vf';
 

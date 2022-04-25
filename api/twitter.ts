@@ -28,6 +28,7 @@ export const getAllTweets = async (): Promise<any> => {
   //  NEED TO UPDATE
   const endpointURL = "http://localhost:3000/api/requestTweets";
 
+
   const response = await fetch(endpointURL, {
     method: "GET",
   });
@@ -36,6 +37,22 @@ export const getAllTweets = async (): Promise<any> => {
 
   return response.json();
 };
+
+export const getAllInverseTweets = async (): Promise<any> => {
+
+  //  NEED TO UPDATE
+  const endpointURL = "http://localhost:3000/api/requestInverseTweets";
+
+
+  const response = await fetch(endpointURL, {
+    method: "GET",
+  });
+
+  console.log("Fetching all tweets")
+
+  return response.json();
+};
+
 
 
 

@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Container = styled.a`
   text-align: center;
   padding: 1rem 0rem;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   margin-bottom: 1rem;
   border-radius: 0.5rem;
   width: 100%;
@@ -82,7 +82,7 @@ const Username = styled.p`
 const TimeStamp = styled.p`
   display: inline-flex;
   float: right;
-  color: rgb(83, 100, 113);
+  color: white;
   font-size: 13px;
   text-align: left;
   margin: 0 auto;
@@ -91,7 +91,7 @@ const TimeStamp = styled.p`
 
 const Icon = styled.a`
   display: inline-flex;
-  color: rgb(83, 100, 113);
+  color: white;
   font-weight: 300;
   font-size: 13px;
   margin: 0 auto;
@@ -110,7 +110,7 @@ const Icon = styled.a`
 
 const ShareIcon = styled.p`
   display: inline-flex;
-  color: rgb(83, 100, 113);
+  color: white;
   font-weight: 300;
   font-size: 13px;
   margin: 0 auto;
@@ -235,9 +235,10 @@ type TweetsResponse = {
 type TweetProps = {
   tweets: TweetsResponse;
   allData: any;
+  isWassie: boolean;
 };
 
-const TweetCard = ({ tweets, allData }: TweetProps): JSX.Element => {
+const TweetCard = ({ tweets, allData, isWassie }: TweetProps): JSX.Element => {
   const { text, created_at } = tweets || {};
   const filteredText = text.split(/\shttp?s/)[0].toString();
   const linkToTweet = `https://twitter.com/DankBankHQ/status/${tweets.id}`;
@@ -289,18 +290,20 @@ const TweetCard = ({ tweets, allData }: TweetProps): JSX.Element => {
     <Container href={linkToTweet} target="_blank">
       <TweetPfpContainer>
         <TweetPfp src="/assets/fingerlessWassie.png" />
-        {removed ? (
+        {/* {removed ? (
           <ClickedRemove onClick={handleRemove}>Remove</ClickedRemove>
         ) : (
           <Remove onClick={handleRemove}>Remove</Remove>
-        )}
-        <RemoveCount>0/15</RemoveCount>
+        )} */}
+        {/* <RemoveCount>0/15</RemoveCount> */}
       </TweetPfpContainer>
       <RightTextContainer>
         <TweetText>
           <TweetContentContainer>
-            <WassieName>WassieDao</WassieName>
-            <Username>@WassieTweetDao</Username>
+            <WassieName>
+              {isWassie ? "WassieDao" : "smolting (wassie, verse)"}
+            </WassieName>
+            <Username>{isWassie ? "@WassieTweetDao" : "@inversebrah"}</Username>
             <TimeStamp>{timeFromNow()}</TimeStamp>
             <br />
             {filteredText}
@@ -324,10 +327,17 @@ const TweetCard = ({ tweets, allData }: TweetProps): JSX.Element => {
               Retweet
               <StyledLike src="/assets/retweet.png" />
             </Icon>
-            <ShareIcon>
-              Share
-              <StyledShare src="/assets/share.png" />
-            </ShareIcon>
+            {removed ? (
+              <ShareIcon onClick={handleRemove}>
+                Downvote
+                <StyledShare src="/assets/share.png" />
+              </ShareIcon>
+            ) : (
+              <ShareIcon onClick={handleRemove}>
+                Downvote
+                <StyledShare src="/assets/share.png" />
+              </ShareIcon>
+            )}
           </BottomContainer>
         </TweetText>
       </RightTextContainer>

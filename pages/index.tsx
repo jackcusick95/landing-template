@@ -4,7 +4,11 @@ import { ethers } from "ethers";
 import { useWalletContext } from "../context/walletContext";
 import LoginButton from "../components/LoginButton";
 import { useMutation } from "react-query";
-import { getAllTweets, postToTwitter } from "../api/twitter";
+import {
+  getAllInverseTweets,
+  getAllTweets,
+  postToTwitter,
+} from "../api/twitter";
 import { useEffect, useState } from "react";
 import TweetCard from "../components/TweetCard";
 
@@ -75,6 +79,16 @@ const MintSection = styled.div`
   margin-top: 2rem;
 `;
 
+const MintCountSection = styled.div`
+  position: relative;
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+  height: 3rem;
+  display: table;
+  margin-top: 0.2rem;
+`;
+
 const MintButtonSection = styled.div`
   position: relative;
   display: flex;
@@ -98,6 +112,21 @@ const MintText = styled.p`
   }
 `;
 
+const MintPriceText = styled.p`
+  color: white;
+  font-size: 15px;
+  font-family: "Press Start 2P";
+  font-weight: normal;
+  font-style: normal;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+  padding: 1rem 0rem 0rem 0rem;
+  @media screen and (max-width: 550px) {
+    font-size: 18px;
+  }
+`;
+
 const MintedText = styled.p`
   color: white;
   font-size: 20px;
@@ -107,7 +136,7 @@ const MintedText = styled.p`
   text-align: center;
   vertical-align: middle;
   display: table-cell;
-  padding: 1rem 0rem;
+  padding: 0rem;
   @media screen and (max-width: 550px) {
     font-size: 14px;
   }
@@ -166,22 +195,23 @@ const TabsContainer = styled.div`
   display: flex;
   float: left;
   margin-top: 2rem;
-  margin-bottom: -3px;
+  margin-bottom: -2px;
   width: auto;
-  height: 2rem;
+  height: 2.2rem;
   display: table;
-  z-index: 100;
+  z-index: 110;
 `;
 
 const TweetButton = styled.button`
   border-radius: 9999px;
+  font-family: "Press Start 2P";
   opacity: 0.5;
   font-weight: 500;
   transition: box-shadow 0.3s ease-in-out 0s;
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 1rem;
   width: auto;
   height: auto;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   color: rgb(255, 255, 255);
   background-color: rgb(29, 155, 240);
   text-align: center;
@@ -197,29 +227,59 @@ const StyledTab = styled.div`
   font-weight: normal;
   transition: box-shadow 0.3s ease-in-out 0s;
   padding: 0.4rem 1.5rem;
+  opacity: 0.5;
   width: auto;
   height: auto;
   font-size: 0.6rem;
   font-family: "Press Start 2P";
   margin: 1rem;
   color: white;
-  background-color: rgb(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.5);
   text-align: center;
   vertical-align: middle;
   display: table-cell;
   border: 1px solid rgb(255, 255, 255, 0.4);
-  border-radius: 10px;
+  border-radius: 10px 10px 0px 0px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const StyledActiveTab = styled.div`
+  font-weight: normal;
+  transition: box-shadow 0.3s ease-in-out 0s;
+  padding: 0.4rem 1.5rem;
+  width: auto;
+  height: auto;
+  font-size: 0.6rem;
+  font-family: "Press Start 2P";
+  margin: 1rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+  border-top: 1px solid rgb(255, 255, 255, 0.4);
+  border-right: 1px solid rgb(255, 255, 255, 0.4);
+  border-left: 1px solid rgb(255, 255, 255, 0.4);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 10px 10px 0px 0px;
+  z-index: 100;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const TweetActiveButton = styled.button`
   border-radius: 9999px;
+  font-family: "Press Start 2P";
   opacity: 1;
-  font-weight: 500;
+  font-weight: 300;
   transition: box-shadow 0.3s ease-in-out 0s;
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 1rem;
   width: auto;
   height: auto;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   color: rgb(255, 255, 255);
   background-color: rgb(29, 155, 240);
   text-align: center;
@@ -244,13 +304,14 @@ const TranslateButtonContainer = styled.div`
 
 const TranslateButton = styled.button`
   border-radius: 9999px;
+  font-family: "Press Start 2P";
   opacity: 0.5;
-  font-weight: 500;
+  font-weight: 300;
   transition: box-shadow 0.3s ease-in-out 0s;
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 1rem;
   width: auto;
   height: auto;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   color: rgb(255, 255, 255);
   background: #3cb371;
   text-align: center;
@@ -264,13 +325,14 @@ const TranslateButton = styled.button`
 
 const TranslateActiveButton = styled.button`
   border-radius: 9999px;
+  font-family: "Press Start 2P";
   opacity: 1;
-  font-weight: 500;
+  font-weight: 300;
   transition: box-shadow 0.3s ease-in-out 0s;
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
   width: auto;
   height: auto;
-  font-size: 1.2rem;
   color: rgb(255, 255, 255);
   background: #3cb371;
   text-align: center;
@@ -283,7 +345,7 @@ const TranslateActiveButton = styled.button`
 `;
 
 const FormTweetContainer = styled.div`
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #b19cd9;
   position: relative;
   display: flex;
   margin: 0 auto;
@@ -311,6 +373,8 @@ const TweetPfpContainer = styled.div`
 const TweetPfp = styled.img`
   display: inline-block;
   color: white;
+  background-color: white;
+  padding: 0.6rem;
   margin-left: 0.5rem;
   margin-bottom: 0.5rem;
   text-align: center;
@@ -348,7 +412,10 @@ const WassieBackgroundOne = styled.img`
   border-radius: 50%;
   transform: rotate(-10deg);
   opacity: 0.5;
-  @media screen and (max-width: 550px) {
+  @media screen and (max-width: 950px) {
+    left: 2rem;
+  }
+  @media screen and (max-width: 750px) {
     display: none;
   }
 `;
@@ -364,7 +431,10 @@ const WassieBackgroundTwo = styled.img`
   border-radius: 50%;
   transform: rotate(20deg);
   opacity: 0.5;
-  @media screen and (max-width: 550px) {
+  @media screen and (max-width: 950px) {
+    right: 2rem;
+  }
+  @media screen and (max-width: 750px) {
     display: none;
   }
 `;
@@ -380,6 +450,12 @@ const WassieBackgroundThree = styled.img`
   border-radius: 50%;
   transform: rotate(20deg);
   opacity: 0.5;
+  @media screen and (max-width: 950px) {
+    left: 2rem;
+  }
+  @media screen and (max-width: 750px) {
+    display: none;
+  }
 `;
 
 const WassieBackgroundFour = styled.img`
@@ -393,7 +469,10 @@ const WassieBackgroundFour = styled.img`
   border-radius: 50%;
   transform: rotate(-10deg);
   opacity: 0.5;
-  @media screen and (max-width: 550px) {
+  @media screen and (max-width: 950px) {
+    right: 2rem;
+  }
+  @media screen and (max-width: 750px) {
     display: none;
   }
 `;
@@ -409,7 +488,10 @@ const WassieBackgroundFive = styled.img`
   border-radius: 50%;
   transform: rotate(-10deg);
   opacity: 0.5;
-  @media screen and (max-width: 550px) {
+  @media screen and (max-width: 950px) {
+    left: 2rem;
+  }
+  @media screen and (max-width: 750px) {
     display: none;
   }
 `;
@@ -425,20 +507,38 @@ const WassieBackgroundSix = styled.img`
   border-radius: 50%;
   transform: rotate(20deg);
   opacity: 0.5;
-  @media screen and (max-width: 550px) {
+  @media screen and (max-width: 950px) {
+    right: 2rem;
+  }
+  @media screen and (max-width: 750px) {
     display: none;
   }
 `;
 
 const WassieCount = styled.div`
+  color: white;
   display: block;
-  font-size: 16px;
+  font-family: "Press Start 2P";
+  font-size: 12px;
   margin-left: 1.3rem;
   font-weight: 500;
-  font-family: "Teko", "Prompt", sans-serif;
   @media screen and (max-width: 550px) {
     margin-left: 0rem;
-    font-size: 14px;
+    font-size: 10px;
+  }
+`;
+
+const WassieCountNum = styled.div`
+  color: white;
+  display: block;
+  font-family: "Press Start 2P";
+  font-size: 12px;
+  margin-left: 1.3rem;
+  font-weight: 500;
+  margin-top: 10px;
+  @media screen and (max-width: 550px) {
+    margin-left: 0rem;
+    font-size: 10px;
   }
 `;
 
@@ -498,6 +598,7 @@ export default function Home(): JSX.Element {
   const [isTranslated, setIsTranslated] = useState(false);
   const [tweetsList, setTweetsList] = useState([]);
   const [allTweetData, setAllTweetData] = useState([]);
+  const [wassieTweets, setWassieTweets] = useState(true);
 
   const [tweetFile, setTweetFile] = useState<string | ArrayBuffer | null>("");
 
@@ -568,13 +669,22 @@ export default function Home(): JSX.Element {
   // Tweets
   useEffect(() => {
     async function getTweets() {
-      const { data } = await getAllTweets();
-      setAllTweetData(data);
-      setTweetsList(data.data);
-      return data;
+      if (wassieTweets) {
+        const { data } = await getAllTweets();
+        setAllTweetData(data);
+        setTweetsList(data.data);
+        return data;
+      }
+      if (!wassieTweets) {
+        const { data } = await getAllInverseTweets();
+        setAllTweetData(data);
+        setTweetsList(data.data);
+        return data;
+      }
     }
+
     getTweets();
-  }, []);
+  }, [wassieTweets]);
 
   const TWITTER_MAX_CHARS = 280;
 
@@ -616,12 +726,16 @@ export default function Home(): JSX.Element {
           <MintButton>~ Thoon ~</MintButton>
         </MintButtonSection>
         <MintSection>
-          <MintedText>Wassies Minted: 0 / 7000</MintedText>
+          <MintPriceText>Mint Price: 0.069 ETH</MintPriceText>
         </MintSection>
+        <MintCountSection>
+          <MintedText>Wassies Minted: 0 / 5000</MintedText>
+        </MintCountSection>
         <FormTweetContainer>
           <TweetPfpContainer>
-            <TweetPfp src="/assets/pfp.jpeg" />
-            <WassieCount>Wassies: 0</WassieCount>
+            <TweetPfp src="/assets/fingerlessWassie.png" />
+            <WassieCount>Wassies:</WassieCount>
+            <WassieCountNum>0</WassieCountNum>
           </TweetPfpContainer>
           <TweetInput
             value={translatedText}
@@ -679,14 +793,32 @@ export default function Home(): JSX.Element {
 
         <ThreeBoxContainer>
           <TabsContainer>
-            <StyledTab>Recent Tweets</StyledTab>
-            <StyledTab>Inversebrah</StyledTab>
+            {wassieTweets ? (
+              <>
+                <StyledActiveTab onClick={() => setWassieTweets(true)}>
+                  Recent Tweets
+                </StyledActiveTab>
+                <StyledTab onClick={() => setWassieTweets(false)}>
+                  @inversebrah
+                </StyledTab>
+              </>
+            ) : (
+              <>
+                <StyledTab onClick={() => setWassieTweets(true)}>
+                  Recent Tweets
+                </StyledTab>
+                <StyledActiveTab onClick={() => setWassieTweets(false)}>
+                  @inversebrah
+                </StyledActiveTab>
+              </>
+            )}
           </TabsContainer>
           <StyledMiddleBox>
             {tweetsList?.map((tweets: any) => {
               return (
                 <TweetCard
                   key={tweets.id}
+                  isWassie={wassieTweets}
                   tweets={tweets}
                   allData={allTweetData}
                 />

@@ -25,11 +25,12 @@ const StyledButton = styled.div`
   border-radius: 1rem;
   font-weight: 500;
   transition: box-shadow 0.3s ease-in-out 0s;
-  padding: 0.3rem 1rem;
+  font-family: "Press Start 2P";
+  padding: 0.9rem 0.5rem;
   margin-top: 10px;
-  width: 220px;
+  max-width: 265px;
   height: 50px;
-  font-size: 1.6rem;
+  font-size: 1rem;
   color: rgb(255, 255, 255);
   background: #3cb371;
   @media screen and (max-width: 550px) {
