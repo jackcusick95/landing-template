@@ -83,7 +83,7 @@ const TimeStamp = styled.p`
   font-family: "Teko", "Prompt", sans-serif;
 `;
 
-const Icon = styled.p`
+const Icon = styled.a`
   display: inline-flex;
   color: rgb(83, 100, 113);
   font-weight: 300;
@@ -199,6 +199,18 @@ const StyledLike = styled.img`
   margin-left: 0.2rem;
   height: 1rem;
   width: 1rem;
+  margin-top: 2px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const StyledShare = styled.img`
+  display: inline-flex;
+  color: white;
+  margin-left: 0.2rem;
+  height: 1rem;
+  width: 1rem;
   &:hover {
     cursor: pointer;
   }
@@ -260,6 +272,10 @@ const TweetCard = ({ tweets, allData }: TweetProps): JSX.Element => {
     }
   };
 
+  const retweet = `https://twitter.com/intent/retweet?tweet_id=${tweets.id}`;
+  const comment = `https://twitter.com/intent/tweet?in_reply_to=${tweets.id}`;
+  const like = `https://twitter.com/intent/like?tweet_id=${tweets.id}`;
+
   return (
     // eslint-disable-next-line @next/next/link-passhref
     <Container href={linkToTweet} target="_blank">
@@ -288,21 +304,21 @@ const TweetCard = ({ tweets, allData }: TweetProps): JSX.Element => {
             )}
           </TweetContentContainer>
           <BottomContainer>
-            <Icon>
+            <Icon href={comment} target="_blank">
               Comment
               <StyledLike src="/assets/comment.png" />
             </Icon>
-            <Icon>
+            <Icon href={like} target="_blank">
               Like
               <StyledLike src="/assets/like.png" />
             </Icon>
-            <Icon>
+            <Icon href={retweet} target="_blank">
               Retweet
               <StyledLike src="/assets/retweet.png" />
             </Icon>
             <ShareIcon>
               Share
-              <StyledLike src="/assets/share.png" />
+              <StyledShare src="/assets/share.png" />
             </ShareIcon>
           </BottomContainer>
         </TweetText>

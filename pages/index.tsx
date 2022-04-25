@@ -617,10 +617,10 @@ export default function Home(): JSX.Element {
           <MintText>Mint is Live!</MintText>
         </MintSection>
         <MintButtonSection>
-          <MintButton>Claim ur Smol</MintButton>
+          <MintButton>Claim Wassie</MintButton>
         </MintButtonSection>
         <MintSection>
-          <MintedText>Smols Minted: 0 / 7000</MintedText>
+          <MintedText>Wassies Minted: 0 / 7000</MintedText>
         </MintSection>
         <FormTweetContainer>
           <TweetPfpContainer>
