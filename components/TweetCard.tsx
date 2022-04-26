@@ -204,10 +204,10 @@ const TweetPfpContainer = styled.div`
 const StyledLike = styled.img`
   display: inline-flex;
   color: white;
-  margin-left: 0.2rem;
-  height: 1rem;
-  width: 1rem;
-  margin-top: 2px;
+  margin-left: 0.4rem;
+  height: 0.8rem;
+  width: 0.8rem;
+  margin-top: 4px;
   &:hover {
     cursor: pointer;
   }
@@ -289,13 +289,13 @@ const TweetCard = ({ tweets, allData, isWassie }: TweetProps): JSX.Element => {
     // eslint-disable-next-line @next/next/link-passhref
     <Container href={linkToTweet} target="_blank">
       <TweetPfpContainer>
-        <TweetPfp src="/assets/fingerlessWassie.png" />
-        {/* {removed ? (
-          <ClickedRemove onClick={handleRemove}>Remove</ClickedRemove>
-        ) : (
-          <Remove onClick={handleRemove}>Remove</Remove>
-        )} */}
-        {/* <RemoveCount>0/15</RemoveCount> */}
+        <TweetPfp
+          src={
+            isWassie
+              ? "/assets/fingerlessWassie.png"
+              : "/assets/inversepfp.jpeg"
+          }
+        />
       </TweetPfpContainer>
       <RightTextContainer>
         <TweetText>
@@ -317,25 +317,20 @@ const TweetCard = ({ tweets, allData, isWassie }: TweetProps): JSX.Element => {
           <BottomContainer>
             <Icon href={comment} target="_blank">
               Comment
-              <StyledLike src="/assets/comment.png" />
+              <StyledLike src="/assets/whitecomment.png" />
             </Icon>
             <Icon href={like} target="_blank">
               Like
-              <StyledLike src="/assets/like.png" />
+              <StyledLike src="/assets/whiteheart.png" />
             </Icon>
             <Icon href={retweet} target="_blank">
               Retweet
-              <StyledLike src="/assets/retweet.png" />
+              <StyledLike src="/assets/whitert.png" />
             </Icon>
-            {removed ? (
+            {isWassie && (
               <ShareIcon onClick={handleRemove}>
                 Downvote
-                <StyledShare src="/assets/share.png" />
-              </ShareIcon>
-            ) : (
-              <ShareIcon onClick={handleRemove}>
-                Downvote
-                <StyledShare src="/assets/share.png" />
+                <StyledLike src="/assets/thumbsdown.png" />
               </ShareIcon>
             )}
           </BottomContainer>
