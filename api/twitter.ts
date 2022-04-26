@@ -1,5 +1,3 @@
-import Cors from 'cors'
-// import { ENDPOINTS } from '../endpoints';
 
 const ZAPIER_TWITTER_WEBHOOK = process.env.NEXT_PUBLIC_TWITTER_WEBHOOK;
 
