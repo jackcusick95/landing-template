@@ -181,8 +181,8 @@ const TweetPfp = styled.img`
   background-color: white;
   padding: 0.6rem;
   margin-bottom: 0.5rem;
-  height: 5rem;
-  width: 5rem;
+  height: 4rem;
+  width: 4rem;
   border-radius: 50%;
   @media screen and (max-width: 550px) {
     height: 3rem;
@@ -194,7 +194,7 @@ const TweetPfpContainer = styled.div`
   display: inline-block;
   width: 15%;
   height: auto;
-  padding-right: 2rem;
+  margin-right: 0.5rem;
   @media screen and (max-width: 550px) {
     padding-right: 0rem;
     margin-right: 0.5rem;

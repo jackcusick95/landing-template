@@ -218,8 +218,9 @@ const TweetButton = styled.button`
   vertical-align: middle;
   display: table-cell;
   border: none;
-  @media screen and (max-width: 550px) {
-    font-size: 1rem;
+  @media screen and (max-width: 950px) {
+    font-size: 0.8rem;
+    padding: 0.8rem 0.8rem;
   }
 `;
 
@@ -286,8 +287,9 @@ const TweetActiveButton = styled.button`
   vertical-align: middle;
   display: table-cell;
   border: none;
-  @media screen and (max-width: 550px) {
-    font-size: 1rem;
+  @media screen and (max-width: 950px) {
+    font-size: 0.8rem;
+    padding: 0.8rem 0.8rem;
   }
 `;
 
@@ -318,8 +320,9 @@ const TranslateButton = styled.button`
   vertical-align: middle;
   display: table-cell;
   border: none;
-  @media screen and (max-width: 550px) {
-    font-size: 1rem;
+  @media screen and (max-width: 950px) {
+    font-size: 0.8rem;
+    padding: 0.8rem 0.8rem;
   }
 `;
 
@@ -339,8 +342,9 @@ const TranslateActiveButton = styled.button`
   vertical-align: middle;
   display: table-cell;
   border: none;
-  @media screen and (max-width: 550px) {
-    font-size: 1rem;
+  @media screen and (max-width: 950px) {
+    font-size: 0.8rem;
+    padding: 0.8rem 0.8rem;
   }
 `;
 
@@ -363,9 +367,10 @@ const FormTweetContainer = styled.div`
 
 const TweetPfpContainer = styled.div`
   display: inline-block;
-  width: 25%;
+  text-align: center;
+  width: 20%;
   margin-bottom: 0.8rem;
-  @media screen and (max-width: 550px) {
+  @media screen and (max-width: 950px) {
     margin-bottom: 2.5rem;
   }
 `;
@@ -375,14 +380,14 @@ const TweetPfp = styled.img`
   color: white;
   background-color: white;
   padding: 0.6rem;
-  margin-left: 0.5rem;
+  /* margin-left: 0.5rem; */
   margin-bottom: 0.5rem;
   text-align: center;
   vertical-align: left;
   height: 6rem;
   width: 6rem;
   border-radius: 50%;
-  @media screen and (max-width: 550px) {
+  @media screen and (max-width: 950px) {
     margin-left: 0rem;
     height: 4rem;
     width: 4rem;
@@ -520,9 +525,9 @@ const WassieCount = styled.div`
   display: block;
   font-family: "Press Start 2P";
   font-size: 12px;
-  margin-left: 1.3rem;
+  /* margin-left: 1.3rem; */
   font-weight: 500;
-  @media screen and (max-width: 550px) {
+  @media screen and (max-width: 950px) {
     margin-left: 0rem;
     font-size: 10px;
   }
@@ -533,7 +538,7 @@ const WassieCountNum = styled.div`
   display: block;
   font-family: "Press Start 2P";
   font-size: 12px;
-  margin-left: 1.3rem;
+  /* margin-left: 1.3rem; */
   font-weight: 500;
   margin-top: 10px;
   @media screen and (max-width: 550px) {
@@ -734,7 +739,7 @@ export default function Home(): JSX.Element {
         <FormTweetContainer>
           <TweetPfpContainer>
             <TweetPfp src="/assets/fingerlessWassie.png" />
-            <WassieCount>Wassies:</WassieCount>
+            <WassieCount>Wassies</WassieCount>
             <WassieCountNum>0</WassieCountNum>
           </TweetPfpContainer>
           <TweetInput
