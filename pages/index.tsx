@@ -362,6 +362,9 @@ const FormTweetContainer = styled.div`
   margin-top: 2rem;
   padding: 1rem 1rem 1rem 1rem;
   border-radius: 10px;
+  @media screen and (max-width: 750px) {
+    width: 90%;
+  }
   @media screen and (max-width: 550px) {
     width: 100%;
   }
@@ -570,6 +573,9 @@ const ThreeBoxContainer = styled.div`
   height: auto;
   // border: 1px solid white;
   display: table;
+  @media screen and (max-width: 750px) {
+    width: 90%;
+  }
   @media screen and (max-width: 550px) {
     width: 100%;
   }

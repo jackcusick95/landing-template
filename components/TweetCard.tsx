@@ -27,7 +27,7 @@ const BottomContainer = styled.div`
   width: 85%;
   margin-top: 1rem;
 
-  @media screen and (max-width: 550px) {
+  @media screen and (max-width: 950px) {
     width: 100%;
   }
 `;
@@ -103,7 +103,7 @@ const Icon = styled.a`
     text-decoration: underline;
   }
   @media screen and (max-width: 550px) {
-    font-size: 12px;
+    font-size: 11px;
     margin-right: 5%;
   }
 `;
