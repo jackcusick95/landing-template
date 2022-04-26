@@ -9,7 +9,7 @@ import {
   getAllTweets,
   postToTwitter,
 } from "../api/twitter";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import TweetCard from "../components/TweetCard";
 import QUERY_CACHE from "../utils/query-cache";
 import { getTweets } from "../hooks/getTweets";
@@ -689,7 +689,7 @@ export default function Home(): JSX.Element {
 
   const { wassieTweetData, inverseData } = getTweets();
 
-  useMemo(() => {
+  useEffect(() => {
     if (wassieTweets && wassieTweetData) {
       const wassieData = wassieTweetData.data;
       setAllTweetData(wassieData);
@@ -700,7 +700,7 @@ export default function Home(): JSX.Element {
       setAllTweetData(inversebraData);
       setTweetsList(inversebraData.data);
     }
-  }, [wassieTweets]);
+  }, [inverseData, wassieTweetData, wassieTweets]);
 
   return (
     <>
