@@ -26,7 +26,8 @@ export const postToTwitter = async ({
 export const getAllTweets = async (): Promise<any> => {
 
   //  NEED TO UPDATE
-  const endpointURL = "http://localhost:3000/api/requestTweets";
+  // const endpointURL = "http://localhost:3000/api/requestTweets";
+  const endpointURL = "https://wassie-dao.vercel.app/api/requestTweets"
 
 
   const response = await fetch(endpointURL, {
@@ -41,7 +42,8 @@ export const getAllTweets = async (): Promise<any> => {
 export const getAllInverseTweets = async (): Promise<any> => {
 
   //  NEED TO UPDATE
-  const endpointURL = "http://localhost:3000/api/requestInverseTweets";
+  // const endpointURL = "http://localhost:3000/api/requestInverseTweets";
+   const endpointURL = "https://wassie-dao.vercel.app/api/requestInverseTweets"
 
 
   const response = await fetch(endpointURL, {
