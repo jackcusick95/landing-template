@@ -3,14 +3,16 @@ import styled from "styled-components";
 import { ethers } from "ethers";
 import { useWalletContext } from "../context/walletContext";
 import LoginButton from "../components/LoginButton";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import {
   getAllInverseTweets,
   getAllTweets,
   postToTwitter,
 } from "../api/twitter";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import TweetCard from "../components/TweetCard";
+import QUERY_CACHE from "../utils/query-cache";
+import { getTweets } from "../hooks/getTweets";
 
 const HeroSection = styled.div`
   width: 100%;
@@ -651,47 +653,54 @@ export default function Home(): JSX.Element {
 
   const { mutate: postNewTweet } = useMutation(postToTwitter);
 
-  const handleTweet = async () => {
-    if (translatedText !== "" && translatedText.length < 280) {
-      await postNewTweet({ text: translatedText, videoUrl: tweetFile });
-      setTranslatedText("");
-    }
+  // USE ONCE MINT BEGINS
+  // const handleTweet = async () => {
+  //   if (translatedText !== "" && translatedText.length < 280) {
+  //     await postNewTweet({ text: translatedText, videoUrl: tweetFile });
+  //     setTranslatedText("");
+  //   }
 
-    if (translatedText.length > 280) {
-      alert("Exceeding Twitter's 280 char count");
-      return;
-    }
+  //   if (translatedText.length > 280) {
+  //     alert("Exceeding Twitter's 280 char count");
+  //     return;
+  //   }
+  // };
+
+  const handleTweet = async () => {
+    alert("You will be able to tweet after mint!");
+    return;
   };
+
+  // USE ONCE MINT BEGINS
+  // const handleTranslate = () => {
+  //   if (readyToTranslated && active) {
+  //     // LOGIC FOR TRANSLATION GOES HERE
+
+  //     setIsTranslated(true);
+  //   }
+  // };
 
   const handleTranslate = () => {
-    if (readyToTranslated && active) {
-      // LOGIC FOR TRANSLATION GOES HERE
-
-      setIsTranslated(true);
-    }
+    alert("You will be able to translate after mint!");
+    return;
   };
 
-  // Tweets
-  useEffect(() => {
-    async function getTweets() {
-      if (wassieTweets) {
-        const { data } = await getAllTweets();
-        setAllTweetData(data);
-        setTweetsList(data.data);
-        return data;
-      }
-      if (!wassieTweets) {
-        const { data } = await getAllInverseTweets();
-        setAllTweetData(data);
-        setTweetsList(data.data);
-        return data;
-      }
-    }
-
-    getTweets();
-  }, [wassieTweets]);
-
   const TWITTER_MAX_CHARS = 280;
+
+  const { wassieTweetData, inverseData } = getTweets();
+
+  useMemo(() => {
+    if (wassieTweets && wassieTweetData) {
+      const wassieData = wassieTweetData.data;
+      setAllTweetData(wassieData);
+      setTweetsList(wassieData.data);
+    }
+    if (!wassieTweets && inverseData) {
+      const inversebraData = inverseData.data;
+      setAllTweetData(inversebraData);
+      setTweetsList(inversebraData.data);
+    }
+  }, [wassieTweets]);
 
   return (
     <>

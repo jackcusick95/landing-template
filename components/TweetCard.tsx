@@ -273,12 +273,18 @@ const TweetCard = ({ tweets, allData, isWassie }: TweetProps): JSX.Element => {
     tweets["url"] = mediaKey[0].url;
   }
 
+  // USE  ONCE LIVE
+  // const handleRemove = () => {
+  //   if (!removed) {
+  //     setRemoved(true);
+  //   } else {
+  //     setRemoved(false);
+  //   }
+  // };
+
   const handleRemove = () => {
-    if (!removed) {
-      setRemoved(true);
-    } else {
-      setRemoved(false);
-    }
+    alert("You will be able to downvote after mint!");
+    return;
   };
 
   const retweet = `https://twitter.com/intent/retweet?tweet_id=${tweets.id}`;

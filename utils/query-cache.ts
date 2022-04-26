@@ -1,5 +1,6 @@
 const QUERY_CACHE = Object.freeze({
   ALL_TWEETS: "ALL_TWEETS",
+  ALL_INVERSE_TWEETS: "ALL_INVERSE_TWEETS",
 });
 
 export default QUERY_CACHE;

@@ -35,7 +35,7 @@ export default async (
             try {
               const requestUrl = `https://api.twitter.com/2/users/1386730528737529861/tweets?&expansions=attachments.media_keys&media.fields=media_key,type,url&tweet.fields=created_at`;
 
-              const token = 'AAAAAAAAAAAAAAAAAAAAAMmHDwEAAAAAneRsukx4oiUf%2BIBspcBYs%2BYXPVk%3DzB6Ge4u2yuSxWIO0LiELyG9l5inPmBJFLh2waWxlEjqzr7L4vf';
+              const token = 'AAAAAAAAAAAAAAAAAAAAAEfQbgEAAAAAk6PDlVaJ%2FroOXdnauDU3kUWBUa0%3DANyIPUmnJeZmc20qkd8o481TQkyCqP8xprAMbl9WGJXem6jfa6';
 
               const response = await fetch(requestUrl, {
                 method: "GET",
