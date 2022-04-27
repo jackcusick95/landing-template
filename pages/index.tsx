@@ -7,6 +7,8 @@ import LoginButton from "../components/LoginButton";
 import { useEffect, useState } from "react";
 import TweetCard from "../components/TweetCard";
 import { getTweets } from "../hooks/getTweets";
+import postWassieTweet from "./api/postWassieTweet";
+import { postWasTweet } from "../api/twitter";
 
 const HeroSection = styled.div`
   width: 100%;
@@ -746,10 +748,10 @@ export default function Home(): JSX.Element {
 
   // const { mutate: postNewTweet } = useMutation(postToTwitter);
 
-  // USE ONCE MINT BEGINS
+  // NEED TO GET THIS WORKING
   // const handleTweet = async () => {
   //   if (translatedText !== "" && translatedText.length < 280) {
-  //     await postNewTweet({ text: translatedText, videoUrl: tweetFile });
+  //     await postWasTweet({ text: translatedText });
   //     setTranslatedText("");
   //   }
 
