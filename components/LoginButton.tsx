@@ -26,7 +26,7 @@ const StyledButton = styled.div`
   font-weight: 500;
   transition: box-shadow 0.3s ease-in-out 0s;
   font-family: "Press Start 2P";
-  padding: 0.9rem 0.5rem;
+  padding: 10px 0.6rem;
   margin-top: 10px;
   max-width: 265px;
   height: 50px;

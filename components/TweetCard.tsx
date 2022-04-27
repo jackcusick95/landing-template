@@ -249,7 +249,6 @@ type TweetProps = {
 const TweetCard = ({ tweets, allData, isWassie }: TweetProps): JSX.Element => {
   const { text, created_at } = tweets || {};
   const filteredText = text.split(/\shttp?s/)[0].toString();
-  const linkToTweet = `https://twitter.com/DankBankHQ/status/${tweets.id}`;
   const [removed, setRemoved] = useState(false);
 
   let timenow = Date.now() - Date.parse(created_at);
@@ -298,6 +297,11 @@ const TweetCard = ({ tweets, allData, isWassie }: TweetProps): JSX.Element => {
   const retweet = `https://twitter.com/intent/retweet?tweet_id=${tweets.id}`;
   const comment = `https://twitter.com/intent/tweet?in_reply_to=${tweets.id}`;
   const like = `https://twitter.com/intent/like?tweet_id=${tweets.id}`;
+  const linkToTweet = `https://twitter.com/DankBankHQ/status/${tweets.id}`;
+
+  const openTweet = () => {
+    window.open(linkToTweet, "_blank");
+  };
 
   return (
     // eslint-disable-next-line @next/next/link-passhref
@@ -313,7 +317,7 @@ const TweetCard = ({ tweets, allData, isWassie }: TweetProps): JSX.Element => {
       </TweetPfpContainer>
       <RightTextContainer>
         <TweetText>
-          <TweetContentContainer>
+          <TweetContentContainer onClick={openTweet}>
             <WassieName>
               {isWassie ? "WassieDao" : "smolting (wassie, verse)"}
             </WassieName>

@@ -96,7 +96,7 @@ const MintButtonSection = styled.div`
   position: relative;
   display: flex;
   margin: 1.2rem auto;
-  width: 270px !important;
+  max-width: 250px;
   display: table;
 `;
 
@@ -155,8 +155,8 @@ const MintButton = styled.p`
   font-weight: normal;
   font-style: normal;
   transition: box-shadow 0.3s ease-in-out 0s;
-  padding: 1.2rem 0.5rem;
-  width: 250px;
+  padding: 1rem 1.5rem;
+  max-width: 250px;
   height: auto;
   font-size: 1.1rem;
   color: rgb(255, 255, 255);

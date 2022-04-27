@@ -29,10 +29,6 @@ function App({ Component, pageProps }: AppProps) {
       <Head>
         <meta name="viewport" content="width=device-width" />
         <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com/s/pressstart2p/v12/e3t4euO8T-267oIAQAu6jDQyK3nYivNm4I81PZQ.woff2"
-        />
-        <link
           href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap"
           rel="stylesheet"
         />
