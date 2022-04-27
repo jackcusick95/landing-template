@@ -34,6 +34,7 @@ export default async (
             const response = await fetch(requestUrl, {
                 method: "GET",
                 headers: {
+                  "Content-Type": "application/json",
                   "User-Agent": "v2TweetLookupJS",
                   "authorization": `Bearer ${token}`,
                 },
