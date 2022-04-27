@@ -42,9 +42,7 @@ export const getAllInverseTweets = async (): Promise<any> => {
    const endpointURL = "https://wassie-dao.vercel.app/api/requestInverseTweets";
 
 
-  const response = await fetch(endpointURL, {
-    method: "GET",
-  });
+  const response = await fetch(endpointURL);
 
   console.log("Fetching all tweets");
 
