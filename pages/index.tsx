@@ -4,15 +4,8 @@ import styled from "styled-components";
 import { ethers } from "ethers";
 import { useWalletContext } from "../context/walletContext";
 import LoginButton from "../components/LoginButton";
-import { useMutation, useQuery } from "react-query";
-import {
-  getAllInverseTweets,
-  getAllTweets,
-  postToTwitter,
-} from "../api/twitter";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import TweetCard from "../components/TweetCard";
-import QUERY_CACHE from "../utils/query-cache";
 import { getTweets } from "../hooks/getTweets";
 
 const HeroSection = styled.div`
@@ -21,7 +14,7 @@ const HeroSection = styled.div`
   background-color: rgb(34, 27, 71);
   padding: 1rem 10% 4rem 10%;
   @media screen and (max-width: 550px) {
-    padding: 1rem 0% 4rem 0%;
+    padding: 1rem 3% 4rem 3%;
   }
 `;
 
@@ -126,7 +119,7 @@ const MintPriceText = styled.p`
   display: table-cell;
   padding: 1rem 0rem 0rem 0rem;
   @media screen and (max-width: 550px) {
-    font-size: 18px;
+    font-size: 14px;
   }
 `;
 
@@ -526,6 +519,81 @@ const WassieBackgroundSix = styled.img`
   }
 `;
 
+const WassieBackgroundSeven = styled.img`
+  position: absolute;
+  top: 70rem;
+  left: 5rem;
+  text-align: center;
+  vertical-align: left;
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+  transform: rotate(20deg);
+  opacity: 0.5;
+  @media screen and (max-width: 950px) {
+    left: 2rem;
+  }
+  @media screen and (max-width: 750px) {
+    display: none;
+  }
+`;
+
+const WassieBackgroundEight = styled.img`
+  position: absolute;
+  top: 70rem;
+  right: 5rem;
+  text-align: center;
+  vertical-align: left;
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+  transform: rotate(-10deg);
+  opacity: 0.5;
+  @media screen and (max-width: 950px) {
+    right: 2rem;
+  }
+  @media screen and (max-width: 750px) {
+    display: none;
+  }
+`;
+const WassieBackgroundNine = styled.img`
+  position: absolute;
+  top: 90rem;
+  left: 5rem;
+  text-align: center;
+  vertical-align: left;
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+  transform: rotate(-10deg);
+  opacity: 0.5;
+  @media screen and (max-width: 950px) {
+    left: 2rem;
+  }
+  @media screen and (max-width: 750px) {
+    display: none;
+  }
+`;
+
+const WassieBackgroundTen = styled.img`
+  position: absolute;
+  top: 90rem;
+  right: 5rem;
+  text-align: center;
+  vertical-align: left;
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+  transform: rotate(20deg);
+  opacity: 0.5;
+  @media screen and (max-width: 950px) {
+    right: 2rem;
+  }
+  @media screen and (max-width: 750px) {
+    display: none;
+  }
+`;
+
 const WassieCount = styled.div`
   color: white;
   display: block;
@@ -590,6 +658,24 @@ const StyledMiddleBox = styled.div`
   width: 100%;
   padding-top: 0rem;
   height: auto;
+  @media screen and (min-width: 550px) {
+    height: 68rem;
+    max-height: 95vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 100px;
+      border: 1px solid #000;
+      background-color: #b19cd9;
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 100px;
+      background-color: none;
+    }
+  }
 `;
 
 const StyledCharCount = styled.div`
@@ -734,6 +820,10 @@ export default function Home(): JSX.Element {
         <WassieBackgroundFour src="/assets/fingerlessWassie.png" />
         <WassieBackgroundFive src="/assets/fingerlessWassie.png" />
         <WassieBackgroundSix src="/assets/fingerlessWassie.png" />
+        <WassieBackgroundSeven src="/assets/fingerlessWassie.png" />
+        <WassieBackgroundEight src="/assets/fingerlessWassie.png" />
+        <WassieBackgroundNine src="/assets/fingerlessWassie.png" />
+        <WassieBackgroundTen src="/assets/fingerlessWassie.png" />
 
         <MintSection>
           <MintText>Wen Mint?</MintText>

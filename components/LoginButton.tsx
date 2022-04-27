@@ -38,7 +38,8 @@ const StyledButton = styled.div`
     display: table-cell;
     vertical-align: middle;
     background: rgb(29, 155, 240);
-    font-size: 1.2rem;
+    font-size: 1rem;
+    max-width: 275px;
   }
 `;
 
