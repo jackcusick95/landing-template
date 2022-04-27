@@ -531,7 +531,6 @@ const WassieCount = styled.div`
   display: block;
   font-family: "Press Start 2P";
   font-size: 12px;
-  /* margin-left: 1.3rem; */
   font-weight: 500;
   @media screen and (max-width: 950px) {
     margin-left: 0rem;
@@ -544,7 +543,6 @@ const WassieCountNum = styled.div`
   display: block;
   font-family: "Press Start 2P";
   font-size: 12px;
-  /* margin-left: 1.3rem; */
   font-weight: 500;
   margin-top: 10px;
   @media screen and (max-width: 550px) {
@@ -572,8 +570,10 @@ const ThreeBoxContainer = styled.div`
   margin: 0 auto;
   width: 60%;
   height: auto;
-  // border: 1px solid white;
   display: table;
+  @media screen and (max-width: 1000px) {
+    width: 65%;
+  }
   @media screen and (max-width: 750px) {
     width: 90%;
   }
@@ -614,7 +614,7 @@ export default function Home(): JSX.Element {
   const [allTweetData, setAllTweetData] = useState([]);
   const [wassieTweets, setWassieTweets] = useState(true);
 
-  const [tweetFile, setTweetFile] = useState<string | ArrayBuffer | null>("");
+  // const [tweetFile, setTweetFile] = useState<string | ArrayBuffer | null>("");
 
   useEffect(() => {
     if (translatedText.length > 0 && active) {
@@ -658,7 +658,7 @@ export default function Home(): JSX.Element {
 
   const shortAddress = shortenAddress(account);
 
-  const { mutate: postNewTweet } = useMutation(postToTwitter);
+  // const { mutate: postNewTweet } = useMutation(postToTwitter);
 
   // USE ONCE MINT BEGINS
   // const handleTweet = async () => {
@@ -764,14 +764,6 @@ export default function Home(): JSX.Element {
           <StyledCharCount id="tooManyChar">
             ({translatedText?.length || 0}/{TWITTER_MAX_CHARS})
           </StyledCharCount>
-          {/* <FileInput
-            type="file"
-            accept="image/*"
-            id=""
-            onChange={(e: any) => {
-              handleFile(e);
-            }}
-          /> */}
           {readyToTranslated ? (
             <>
               <TweetButtonContainer>
@@ -802,9 +794,6 @@ export default function Home(): JSX.Element {
               </TranslateButtonContainer>
             </>
           )}
-          {/* <TranslateButtonContainer>
-            <AttachmentIcon src="/assets/attach.png" />
-          </TranslateButtonContainer> */}
         </FormTweetContainer>
 
         <ThreeBoxContainer>

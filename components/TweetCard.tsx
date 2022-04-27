@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const Container = styled.a`
+const Container = styled.div`
   text-align: center;
   padding: 1rem 0rem;
   /* margin-top: 1rem; */
@@ -27,12 +27,12 @@ const BottomContainer = styled.div`
   width: 85%;
   margin-top: 1rem;
 
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 1150px) {
     width: 100%;
   }
 `;
 
-const TweetText = styled.p`
+const TweetText = styled.div`
   display: column;
   color: white;
   font-size: 15px;
@@ -46,7 +46,7 @@ const TweetText = styled.p`
   }
 `;
 
-const TweetContentContainer = styled.p`
+const TweetContentContainer = styled.div`
   min-height: 4rem;
   margin: 0 auto;
 `;
@@ -101,6 +101,14 @@ const Icon = styled.a`
   &:hover {
     cursor: pointer;
     text-decoration: underline;
+  }
+  @media screen and (max-width: 920px) {
+    font-size: 11px;
+    margin-right: 5%;
+  }
+  @media screen and (max-width: 750px) {
+    font-size: 13px;
+    margin-right: 5%;
   }
   @media screen and (max-width: 550px) {
     font-size: 11px;
@@ -293,7 +301,7 @@ const TweetCard = ({ tweets, allData, isWassie }: TweetProps): JSX.Element => {
 
   return (
     // eslint-disable-next-line @next/next/link-passhref
-    <Container href={linkToTweet} target="_blank">
+    <Container>
       <TweetPfpContainer>
         <TweetPfp
           src={

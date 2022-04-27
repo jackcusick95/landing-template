@@ -28,11 +28,9 @@ export const getAllTweets = async (): Promise<any> => {
   const endpointURL = "https://wassie-dao.vercel.app/api/requestTweets";
 
 
-  const response = await fetch(endpointURL, {
-    method: "GET",
-  });
+  const response = await fetch(endpointURL);
 
-  console.log("Fetching all tweets")
+  console.log("Fetching all tweets");
 
   return response.json();
 };
@@ -48,7 +46,7 @@ export const getAllInverseTweets = async (): Promise<any> => {
     method: "GET",
   });
 
-  console.log("Fetching all tweets")
+  console.log("Fetching all tweets");
 
   return response.json();
 };

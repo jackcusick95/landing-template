@@ -26,18 +26,12 @@ export default async (
   res: NextApiResponse
 ): Promise<any> => {
     await runMiddleware(req, res, cors);
-    const { method } = req;
-     const { isWassie } = req.body;
-     console.log(isWassie);
+        try {
+            const requestUrl = `https://api.twitter.com/2/users/1051852534518824960/tweets?&expansions=attachments.media_keys&media.fields=media_key,type,url&tweet.fields=created_at`;
 
-    switch (method) {
-        case "GET":
-            try {
-              const requestUrl = `https://api.twitter.com/2/users/1051852534518824960/tweets?&expansions=attachments.media_keys&media.fields=media_key,type,url&tweet.fields=created_at`;
+            const token = process.env.NEXT_PUBLIC_TWITTER_BEARER_TOKEN;
 
-              const token = process.env.NEXT_PUBLIC_TWITTER_BEARER_TOKEN;
-
-              const response = await fetch(requestUrl, {
+            const response = await fetch(requestUrl, {
                 method: "GET",
                 headers: {
                   "User-Agent": "v2TweetLookupJS",
@@ -45,10 +39,10 @@ export default async (
                 },
               });
 
-              res.json({
+            res.json({
                 status: "success",
                 data: await response.json(),
-              })
+            })
 
             } catch (err) {
                 console.error(`Tweets error: ${err}`);
@@ -58,7 +52,4 @@ export default async (
                 });
             }
 
-            default:
-            res.status(405).json(`Method ${method} Not Allowed`);
-    }
  }

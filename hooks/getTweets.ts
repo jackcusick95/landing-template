@@ -12,7 +12,7 @@ export function getTweets(): UseTweetResp {
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const { data: wassieTweetData } = useQuery([QUERY_CACHE.ALL_TWEETS], () =>
-          getAllTweets(),
+           getAllTweets(),
           {
             refetchIntervalInBackground: false,
             refetchOnWindowFocus: false,
