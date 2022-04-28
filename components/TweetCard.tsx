@@ -130,7 +130,7 @@ const ShareIcon = styled.p`
   }
   @media screen and (max-width: 550px) {
     font-size: 12px;
-    margin-right: 5%;
+    margin-right: 0%;
   }
 `;
 
