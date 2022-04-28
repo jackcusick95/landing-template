@@ -31,7 +31,7 @@ export default async (
         console.log(text);
         const requestUrl = `https://api.twitter.com/2/tweets`;
 
-        // const token = process.env.NEXT_PUBLIC_TWITTER_BEARER_TOKEN;
+        const token = process.env.NEXT_PUBLIC_TWITTER_ACCESS_TOKEN;
 
 
         const response = await fetch(requestUrl, {
@@ -41,7 +41,7 @@ export default async (
             "Content-Type": "application/json",
             "User-Agent": "v2CreateTweetJS",
             "Accept": "application/json",
-            "authorization": `1516498451508477955-G607nNXHPjzYv13LEkXGEZ2SOh1egB`,
+            "Authorization": `${token}`,
             },
           });
 
