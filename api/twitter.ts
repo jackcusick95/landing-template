@@ -47,7 +47,7 @@ interface TextParams {
 }
 
 
-// NEED TO GET THIS WORKING
+// NEED TO GET THIS WORKINGG
 export const postWasTweet = async ({text}: TextParams): Promise<any> => {
 
   const endpointURL = "http://localhost:3000/api/postWassieTweet";
