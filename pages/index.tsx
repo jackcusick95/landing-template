@@ -824,8 +824,8 @@ export default function Home(): JSX.Element {
         <WassieBackgroundSix src="/assets/fingerlessWassie.png" />
         <WassieBackgroundSeven src="/assets/fingerlessWassie.png" />
         <WassieBackgroundEight src="/assets/fingerlessWassie.png" />
-        <WassieBackgroundNine src="/assets/fingerlessWassie.png" />
-        <WassieBackgroundTen src="/assets/fingerlessWassie.png" />
+        {/* <WassieBackgroundNine src="/assets/fingerlessWassie.png" />
+        <WassieBackgroundTen src="/assets/fingerlessWassie.png" /> */}
 
         <MintSection>
           <MintText>Wen Mint?</MintText>
