@@ -31,20 +31,21 @@ export default async (
         console.log(text);
         const requestUrl = `https://api.twitter.com/2/tweets`;
 
-        const token = process.env.NEXT_PUBLIC_TWITTER_BEARER_TOKEN;
+        // const token = process.env.NEXT_PUBLIC_TWITTER_BEARER_TOKEN;
+
 
         const response = await fetch(requestUrl, {
           method: "POST",
           body: text,
           headers: {
             "Content-Type": "application/json",
-            "User-Agent": "v2TweetLookupJS",
-            "authorization": `Bearer ${token}`,
+            "User-Agent": "v2CreateTweetJS",
+            "Accept": "application/json",
+            "authorization": `1516498451508477955-G607nNXHPjzYv13LEkXGEZ2SOh1egB`,
             },
           });
 
-          console.log("here");
-          console.log(response.json());
+          console.log(response);
 
         res.json({
           status: "success",
