@@ -347,13 +347,12 @@ const TranslateActiveButton = styled.button`
 `;
 
 const FormTweetContainer = styled.div`
-  background-color: #b19cd9;
+  background-color: #b19cd970;
   position: relative;
   display: flex;
   margin: 0 auto;
   width: 60%;
   height: auto;
-  border: 1px solid white;
   display: table;
   margin-top: 2rem;
   padding: 1rem 1rem 1rem 1rem;
@@ -837,7 +836,7 @@ export default function Home(): JSX.Element {
           <MintPriceText>Mint Price: 0.069 ETH</MintPriceText>
         </MintSection>
         <MintCountSection>
-          <MintedText>Wassies Minted: 0 / 5000</MintedText>
+          <MintedText>Wassies Minted: 0 / 2222</MintedText>
         </MintCountSection>
         <FormTweetContainer>
           <TweetPfpContainer>
