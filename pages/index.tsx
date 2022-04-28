@@ -799,6 +799,8 @@ export default function Home(): JSX.Element {
   return (
     <>
       <Head>
+        <title>Wassie Tweet Dao</title>
+
         <link
           href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap"
           rel="stylesheet"

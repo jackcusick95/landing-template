@@ -32,7 +32,7 @@ function App({ Component, pageProps }: AppProps) {
           href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/assets/wassie.png" />
       </Head>
       <QueryClientProvider client={queryClient}>
         <Web3ReactProvider getLibrary={getLibrary}>
