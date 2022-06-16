@@ -7,56 +7,32 @@ const ConnectButton = styled.div`
   &:hover {
     cursor: pointer;
   }
-  @media screen and (max-width: 550px) {
-    position: relative;
-    display: table;
-    margin: 0 auto;
-    float: none;
-    width: 45%;
-    margin-top: 1rem;
-  }
 `;
 
 const StyledButton = styled.div`
-  text-shadow: rgb(0 0 0) -1px -1px 0px, rgb(0 0 0) 0px -1px 0px,
-    rgb(0 0 0) 1px -1px 0px, rgb(0 0 0) 1px 0px 0px, rgb(0 0 0) 1px 1px 0px,
-    rgb(0 0 0) 0px 1px 0px, rgb(0 0 0) -1px 1px 0px, rgb(0 0 0) -1px 0px 0px;
-  border: 0.2rem solid rgb(0, 0, 0);
-  border-radius: 1rem;
-  font-weight: 500;
+  border-radius: 100px;
+  font-weight: 600;
   transition: box-shadow 0.3s ease-in-out 0s;
-  font-family: "Press Start 2P";
-  padding: 10px 0.6rem;
-  margin-top: 10px;
+  font-family: "Biennale", sans-serif;
+  padding: 8px 1.3rem;
+  margin-top: 15px;
   max-width: 265px;
-  height: 50px;
-  font-size: 1rem;
+  height: 40px;
+  font-size: 16px;
   color: rgb(255, 255, 255);
-  background: #3cb371;
-  @media screen and (max-width: 550px) {
-    text-align: center;
-    display: table-cell;
-    vertical-align: middle;
-    background: rgb(29, 155, 240);
-    font-size: 1rem;
-    max-width: 275px;
-  }
+  background: #e553ec;
 `;
 
 type LoginButtonProps = {
-  active: boolean;
-  shortenAddress: string;
   onClick: () => void;
 };
 
 export default function LoginButton({
-  active,
-  shortenAddress,
   onClick,
 }: LoginButtonProps): JSX.Element {
   return (
     <ConnectButton onClick={onClick}>
-      <StyledButton>{active ? shortenAddress : "Connect Wallet"}</StyledButton>
+      <StyledButton>Sign Up</StyledButton>
     </ConnectButton>
   );
 }
