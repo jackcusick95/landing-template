@@ -28,8 +28,12 @@ const Header = styled.div`
 `;
 const Logo = styled.div`
   display: flex;
+  width: 7rem;
+  height: 4rem;
   float: left;
   padding: 0rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   @media screen and (max-width: 550px) {
     position: relative;
     display: table;
@@ -40,20 +44,8 @@ const Logo = styled.div`
   }
 `;
 
-const LogoText = styled.div`
-  color: white;
-  font-size: 40px;
-  font-family: "Press Start 2P";
-  font-weight: normal;
-  font-style: normal;
-  margin: 1rem 0px;
-  -webkit-font-smoothing: none;
-  @media screen and (max-width: 550px) {
-    text-align: center;
-    display: table-cell;
-    vertical-align: middle;
-    margin: 0 auto;
-  }
+const LogoImg = styled.img`
+  display: flex;
 `;
 
 const FirstSection = styled.div`
@@ -113,7 +105,6 @@ const TwitterIcon = styled.img`
   height: 2.5rem;
   width: 2.5rem;
   margin-right: 0.8rem;
-  /* margin-left: 1rem; */
 `;
 const DiscordIcon = styled.img`
   display: inline-flex;
@@ -398,7 +389,8 @@ export default function Home(): JSX.Element {
       <HeroSection>
         <Header>
           <Logo>
-            <LogoText>DOXKIT</LogoText>
+            <LogoImg alt="" src="/assets/logo1.jpg" />
+            {/* <LogoText>DOXKIT</LogoText> */}
           </Logo>
           <LoginButton onClick={() => console.log("signing up")} />
         </Header>
@@ -430,14 +422,13 @@ export default function Home(): JSX.Element {
         </FirstSection>
         <StatsHeader>Just in 2021....</StatsHeader>
         <Stats />
-        {/* <StatsSubHeader>....lets fight back.</StatsSubHeader> */}
         <SecondSection>
           <HIWHeader>How it Works</HIWHeader>
           <HIWSubHeader>
             Whether victim to a hack, or looking to earn rewards exposing bad
-            actors, doxkit serves as a bounty marketplace to fight for the
-            future of crypto. Anyone who has been hacked can list a bounty, and
-            anyone who holds a doxkit NFT can compete for the rewards.
+            actors, doxkit serves as a bounty marketplace to fight fraud in the
+            web3 space. Anyone who has been hacked can list a bounty, and anyone
+            who holds a doxkit NFT can compete for the rewards.
           </HIWSubHeader>
           <NFTHeader>Doxkit NFT</NFTHeader>
           <HIWSubHeader>
